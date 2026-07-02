@@ -1,6 +1,8 @@
 import ExperienceLoader from "@/components/three/ExperienceLoader";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navigation from "@/components/layout/Navigation";
+import MobileNav from "@/components/layout/MobileNav";
+import Footer from "@/components/layout/Footer";
 import Overlay from "@/components/layout/Overlay";
 import CustomCursor from "@/components/layout/CustomCursor";
 import Preloader from "@/components/layout/Preloader";
@@ -22,6 +24,8 @@ export default function Home() {
       {/* Fixed DOM layers driven by scroll progress */}
       <Overlay />
       <Navigation />
+      <MobileNav />
+      <Footer />
 
       {/* Scroll engine (renders nothing) */}
       <SmoothScroll />

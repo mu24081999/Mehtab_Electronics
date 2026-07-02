@@ -54,8 +54,34 @@ body {
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.035em;
-  font-size: clamp(3.2rem, 9vw, 8.5rem);
+  font-size: clamp(2.4rem, 8vw, 8.5rem);
   text-shadow: 0 0 60px rgba(34, 211, 238, 0.25);
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: clamp(2rem, 11vw, 3.2rem);
+    line-height: 0.95;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.28em;
+  }
+
+  .overlay-root {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vignette-frame {
+    box-shadow: inset 0 0 120px 24px rgba(0, 0, 0, 0.65);
+  }
+}
+
+/* Safe area for notched phones + bottom mobile nav */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  nav[aria-label="Scene navigation"] {
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+  }
 }
 
 .text-gradient {

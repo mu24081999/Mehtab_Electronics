@@ -2,9 +2,35 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mehtab Electronics — A Journey Through the Electronics Universe",
+  title: "Mehtab Electronics — Cameras, CCTV, Solar & Smart Home | Lahore",
   description:
-    "A cinematic, interactive flight through cameras, security, solar, smart home, networking and power systems — built by Mehtab Electronics.",
+    "Mehtab Electronics — professional camera systems, CCTV security, solar energy, smart home automation, networking and power solutions in Lahore. Installation, maintenance and repair.",
+  keywords: [
+    "Mehtab Electronics",
+    "CCTV Lahore",
+    "solar panels Lahore",
+    "smart home Pakistan",
+    "camera installation",
+    "UPS inverter Lahore",
+  ],
+  openGraph: {
+    title: "Mehtab Electronics — Future Electronics",
+    description: "Cameras, security, solar, smart home, networking and power — installed and supported in Lahore.",
+    type: "website",
+    locale: "en_PK",
+    images: [{ url: "/logo.png", width: 512, height: 512, alt: "Mehtab Electronics" }],
+  },
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#04050a",
 };
 
 const FONTS_HREF =
