@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+:root {
+  --void: #04050a;
+  --void-soft: #080a12;
+  --cyan: #22d3ee;
+  --blue: #2f6bff;
+  --purple: #8b5cff;
+  --magenta: #ff4fd8;
+  --emerald: #2effb0;
+  --amber: #ffb347;
+  --white: #eaf2ff;
+  --font-display: "Space Grotesk", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--void);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: var(--purple);
+  color: #04050a;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================ TYPOGRAPHY */
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  font-size: clamp(3.2rem, 9vw, 8.5rem);
+  text-shadow: 0 0 60px rgba(34, 211, 238, 0.25);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #ffffff 0%, var(--cyan) 42%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.42em;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.split-char {
+  display: inline-block;
+  will-change: transform, filter, opacity;
+}
+
+/* ============================================================ LIQUID GLASS */
+.glass {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.035) 42%, rgba(139, 92, 255, 0.06) 100%);
+  backdrop-filter: blur(30px) saturate(200%) brightness(1.08) contrast(1.05);
+  -webkit-backdrop-filter: blur(30px) saturate(200%) brightness(1.08) contrast(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    /* floating drop shadow */
+    0 30px 80px -24px rgba(0, 0, 0, 0.75),
+    0 8px 24px -12px rgba(34, 211, 238, 0.18),
+    /* crisp top edge highlight */
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    /* soft inner specular top + coloured under-glow */
+    0 22px 44px -30px rgba(255, 255, 255, 0.5) inset,
+    0 -30px 60px -20px rgba(139, 92, 255, 0.14) inset;
+}
+
+/* Refraction / chromatic distortion film + fine frosted grain */
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    radial-gradient(130% 90% at 15% -10%, rgba(34, 211, 238, 0.16), transparent 52%),
+    radial-gradient(110% 90% at 105% 110%, rgba(139, 92, 255, 0.16), transparent 52%),
+    radial-gradient(80% 60% at 90% 0%, rgba(255, 79, 216, 0.08), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");
+  background-blend-mode: screen, screen, screen, overlay;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Moving specular light streak */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: -60% -25%;
+  background: linear-gradient(
+    115deg,
+    transparent 34%,
+    rgba(255, 255, 255, 0.22) 47%,
+    rgba(255, 255, 255, 0.05) 56%,
+    transparent 68%
+  );
+  transform: translateX(-40%);
+  animation: streak 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes streak {
+  0%, 12% {
+    transform: translateX(-65%) translateY(-8%);
+  }
+  60%, 100% {
+    transform: translateX(40%) translateY(8%);
+  }
+}
+
+/* Animated gradient border */
+.glass-border {
+  position: relative;
+  border-radius: 22px;
+}
+.glass-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, var(--cyan), var(--purple), var(--magenta), var(--cyan));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-flow 6s linear infinite;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.glass-glow-cyan { box-shadow: 0 0 40px -8px rgba(34, 211, 238, 0.5); }
+.glass-glow-purple { box-shadow: 0 0 40px -8px rgba(139, 92, 255, 0.5); }
+
+/* ============================================================ CURSOR */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--white);
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.6), inset 0 0 12px rgba(139, 92, 255, 0.4);
+  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.cursor-ring.is-hover {
+  width: 72px;
+  height: 72px;
+  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(34, 211, 238, 0.9);
+}
+
+/* ============================================================ BUTTONS */
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.9rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-magnetic .btn-fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, var(--cyan), var(--purple));
+  opacity: 0.9;
+}
+
+/* ============================================================ UTILITY */
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vignette-frame {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  box-shadow: inset 0 0 200px 40px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  body { cursor: auto; }
+}
